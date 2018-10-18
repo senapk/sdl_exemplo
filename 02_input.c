@@ -44,10 +44,8 @@ int main()
             if(event.type == SDL_MOUSEBUTTONDOWN){
                 switch (event.button.button){
                     case SDL_BUTTON_LEFT:
-                        //SDL_GetGlobalMouseState(&x, &y);
                         x = event.motion.x;
                         y = event.motion.y;
-                        printf("x %d, y %d \n", x, y);
                         break;
                     case SDL_BUTTON_RIGHT:
                         SDL_ShowSimpleMessageBox(0, "Mouse", "Right button was pressed!", window);
