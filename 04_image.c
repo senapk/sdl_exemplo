@@ -8,6 +8,15 @@ SDL_Renderer * renderer; //renderizador do buffer
 int largura = 800;
 int altura = 600;
 
+#define BLACK 0, 0, 0
+#define RED 255, 0, 0
+
+void draw_square(int x, int y, int lado){
+    for (int l = 0; l < lado; ++l)
+        for(int c = 0; c < lado; ++c)
+            SDL_RenderDrawPoint(renderer, x + c, y + l); //plota esse pixel
+}
+
 int main()
 {
     // init SDL
@@ -48,6 +57,7 @@ int main()
         SDL_RenderClear(renderer); //limpa a tela
         
         SDL_RenderCopy(renderer, background, NULL, NULL);//tela inteira
+        draw_square(x, y, lado);
         SDL_RenderCopy(renderer, ship, NULL, &(SDL_Rect){x, y, lado, lado});//posicao tamanho
 
         SDL_RenderPresent(renderer); //mostra o buffer na tela
