@@ -24,7 +24,6 @@ int main()
 
     SDL_CreateWindowAndRenderer(largura, altura, 0, &window, &renderer);
 
-
     // gerenciar eventos
     bool is_open = true;
     SDL_Event event;
@@ -32,7 +31,6 @@ int main()
         while(SDL_PollEvent(&event)){ 
             if(event.type == SDL_QUIT)
                 is_open = false;
-            
         }
  
         SDL_RenderClear(renderer); //limpa a tela
