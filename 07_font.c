@@ -20,7 +20,7 @@ int main()
     // init SDL
     SDL_Init(SDL_INIT_VIDEO);//inicia o vídeo
     TTF_Init();//inicia o motor de texto
-    font = TTF_OpenFont("script12.ttf", 25);
+    font = TTF_OpenFont("script12.ttf", 30); //path para fonte, tamanho da fonte
 
     SDL_CreateWindowAndRenderer(largura, altura, 0, &window, &renderer);
 
@@ -35,6 +35,8 @@ int main()
  
         SDL_RenderClear(renderer); //limpa a tela
         drawText("Eu sei escrever meu povo lindo", 255, 255, 255, 200, 300);
+
+        drawText("Eu sei escrever", 200, 120, 150, 300, 250);
         SDL_RenderPresent(renderer); //mostra o buffer na tela
     }
  
