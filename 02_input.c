@@ -27,6 +27,7 @@ int main()
     // gerenciar eventos
     bool is_open = true;
     SDL_Event event;
+    int r = 100, g = 100, b = 100;
     while(is_open){
         while(SDL_PollEvent(&event)){ 
             if(event.type == SDL_QUIT)
@@ -41,18 +42,20 @@ int main()
                 else if(event.key.keysym.sym == SDLK_RIGHT)
                     x += lado;
             }
+            if(event.type == SDL_MOUSEMOTION){
+                    x = event.motion.x - lado / 2;
+                    y = event.motion.y - lado / 2;
+            }
+
             if(event.type == SDL_MOUSEBUTTONDOWN){
-                switch (event.button.button){
-                    case SDL_BUTTON_LEFT:
-                        x = event.motion.x;
-                        y = event.motion.y;
-                        break;
-                    case SDL_BUTTON_RIGHT:
-                        SDL_ShowSimpleMessageBox(0, "Mouse", "Right button was pressed!", window);
-                        break;
-                    default:
-                        SDL_ShowSimpleMessageBox(0, "Mouse", "Some other button was pressed!", window);
-                        break;
+                if (event.button.button == SDL_BUTTON_LEFT){
+                    r = rand() % 256;
+                    g = rand() % 256;
+                    b = rand() % 256;
+                } else if(event.button.button == SDL_BUTTON_RIGHT){
+                    SDL_ShowSimpleMessageBox(0, "Mouse", "Right button was pressed!", window);
+                } else{
+                    SDL_ShowSimpleMessageBox(0, "Mouse", "Some other button was pressed!", window);
                 }
             }
         }
@@ -60,7 +63,7 @@ int main()
         SDL_SetRenderDrawColor(renderer, BLACK, 255); //muda cor pra preto
         SDL_RenderClear(renderer); //limpa a tela
         
-        SDL_SetRenderDrawColor(renderer, RED, 255); //muda cor pra vermelho
+        SDL_SetRenderDrawColor(renderer, r, g, b, 255); //muda cor pra vermelho
         draw_square(x, y, lado); //desenha um quadrado
         
         SDL_RenderPresent(renderer); //mostra o buffer na tela

@@ -1,10 +1,13 @@
+
+
+
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 
 SDL_Window * window; //janela
 SDL_Renderer * renderer; //renderizador do buffer
-int largura = 800;
-int altura = 600;
+int largura = 1000;
+int altura = 700;
 
 void draw_square(int x, int y, int lado);
 
@@ -20,15 +23,20 @@ int main()
     // gerenciar eventos
     bool is_open = true;
     SDL_Event event;
+    int r = 125, g = 125, b = 125;
     while(is_open){
         while(SDL_PollEvent(&event)) //para todos os eventos que ocorreram 
-            if(event.type == SDL_QUIT) //se usuario clicou em fechar ou alt-f4
-                is_open = false;
+            if(event.type == SDL_QUIT){ //se usuario clicou em fechar ou alt-f4
+                //is_open = false;
+                r = rand() % 256;
+                g = rand() % 256;
+                b = rand() % 256;
+            }
  
         SDL_SetRenderDrawColor(renderer, BLACK, 255); //muda cor pra preto
         SDL_RenderClear(renderer); //limpa a tela
         
-        SDL_SetRenderDrawColor(renderer, RED, 255); //muda cor pra vermelho
+        SDL_SetRenderDrawColor(renderer, r, g, b, 255); //muda cor pra vermelho
         draw_square(50, 50, 200); //desenha um quadrado
         
         SDL_RenderPresent(renderer); //mostra o buffer na tela
